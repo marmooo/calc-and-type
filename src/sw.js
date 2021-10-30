@@ -1,13 +1,13 @@
-var CACHE_NAME = '2021-10-17 13:42';
+var CACHE_NAME = '2021-10-29 10:25';
 var urlsToCache = [
-  "/type-numbers/",
-  "/type-numbers/kohacu.webp",
-  "/type-numbers/index.js",
-  "/type-numbers/mp3/incorrect1.mp3",
-  "/type-numbers/mp3/end.mp3",
-  "/type-numbers/mp3/cat.mp3",
-  "/type-numbers/mp3/correct3.mp3",
-  "/type-numbers/favicon/original.svg",
+  "/calc-and-type/",
+  "/calc-and-type/kohacu.webp",
+  "/calc-and-type/index.js",
+  "/calc-and-type/mp3/incorrect1.mp3",
+  "/calc-and-type/mp3/end.mp3",
+  "/calc-and-type/mp3/cat.mp3",
+  "/calc-and-type/mp3/correct3.mp3",
+  "/calc-and-type/favicon/original.svg",
   "https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css",
 ];
 
