@@ -77,7 +77,7 @@ function loadAudios() {
 
 function loadVoices() {
   // https://stackoverflow.com/questions/21513706/
-  const allVoicesObtained = new Promise(function (resolve, reject) {
+  const allVoicesObtained = new Promise(function (resolve) {
     let voices = speechSynthesis.getVoices();
     if (voices.length !== 0) {
       resolve(voices);
@@ -178,7 +178,7 @@ function loadImage(src) {
 
 function loadCatImage(url) {
   const imgSize = 128;
-  return new Promise((resolve, reject) => {
+  return new Promise((resolve) => {
     loadImage(url).then((originalImg) => {
       const canvas = document.createElement("canvas");
       canvas.width = imgSize;
@@ -193,7 +193,7 @@ function loadCatImage(url) {
   });
 }
 loadCatImage("kohacu.webp").then((catCanvas) => {
-  catsWalk(100, catCanvas);
+  catsWalk(catCanvas);
 });
 
 function catWalk(freq, catCanvas) {
@@ -222,8 +222,8 @@ function catWalk(freq, catCanvas) {
   }, freq);
 }
 
-function catsWalk(freq, catCanvas) {
-  const timer = setInterval(function () {
+function catsWalk(catCanvas) {
+  setInterval(function () {
     if (Math.random() > 0.995) {
       catWalk(getRandomInt(5, 20), catCanvas);
     }
@@ -243,8 +243,7 @@ function startGameTimer() {
     } else {
       clearInterval(gameTimer);
       playAudio(endAudio);
-      playPanel.classList.add("d-none");
-      scorePanel.classList.remove("d-none");
+      scoring();
     }
   }, 1000);
 }
@@ -367,7 +366,6 @@ function toEnglish2(type, a, b) {
 }
 
 function generateData() {
-  const grade = document.getElementById("gradeOption").selectedIndex;
   const course = document.getElementById("courseOption").selectedIndex;
   const range = [8, 2, 8, 2, 9, 0, 8, 2];
   let a, b, c, x, s;
@@ -417,6 +415,11 @@ function generateData() {
 }
 
 initCalc();
+document.getElementById("toggleDarkMode").onclick = toggleDarkMode;
+document.getElementById("startButton").onclick = countdown;
+document.getElementById("restartButton").onclick = countdown;
+document.getElementById("showAnswer").onclick = showAnswer;
+document.getElementById("kohacu").onclick = catNyan;
 [...document.getElementsByTagName("table")].forEach((table) => {
   [...table.getElementsByTagName("tr")].forEach((tr) => {
     tr.onclick = function () {
