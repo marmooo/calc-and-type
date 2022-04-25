@@ -1,4 +1,4 @@
-var CACHE_NAME = '2022-04-07 21:45';
+var CACHE_NAME = '2022-04-26 00:05';
 var urlsToCache = [
   "/calc-and-type/",
   "/calc-and-type/kohacu.webp",
@@ -7,7 +7,7 @@ var urlsToCache = [
   "/calc-and-type/mp3/end.mp3",
   "/calc-and-type/mp3/cat.mp3",
   "/calc-and-type/mp3/correct3.mp3",
-  "/calc-and-type/favicon/original.svg",
+  "/calc-and-type/favicon/favicon.svg",
   "https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css",
 ];
 
