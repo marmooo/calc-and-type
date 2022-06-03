@@ -70,7 +70,7 @@
               <option>×</option>
               <option>÷</option>
             </select>
-            <select id="gradeOption" class="form-select form-select-sm" aria-label="学年">
+            <select id="gradeOption" class="form-select form-select-sm ms-1" aria-label="学年">
               <option selected>Lv.1</option>
               <option>Lv.2</option>
               <option>Lv.3</option>
@@ -91,47 +91,30 @@
         <pre><code>sudo apt install speech-dispatcher
 sudo apt install festival speech-dispatcher-festival</code></pre>
       </div>
-      <div id="gameStart" class="text-center d-none">
-        <div id="countdown">
-          <div id="counter">3</div>
-          <img src="kohacu.webp" width="128" height="128" alt="">
-        </div>
-      </div>
-      <div id="scorePanel" class="text-center pb-3 d-none">
-        <h3 class="pt-3">
-          <ruby>結果<rp>(</rp><rt>けっか</rt><rp>)</rp></ruby>
-        </h3>
-        <img src="kohacu.webp" width="128" height="128" alt="">
-        <p>クリアしたのは・・・</p>
-        <div class="h2 pb-3">
-          <span id="score" class="h1">0</span> /
-          <span id="total" class="h1">0</span>
-          <ruby>問<rp>(</rp><rt>もん</rt><rp>)</rp></ruby>！
-        </div>
-        <button id="restartButton" type="button" class="btn btn-primary btn-lg m-1">リスタート</button>
-      </div>
       <div id="playPanel">
         <div class="row">
-          <div class="col-sm">
-            <p><ruby>四則演算<rt>しそくえんざん</rt></ruby>の<ruby>英文<rt>えいぶん</rt></ruby>をリスニングして<ruby>暗算<rt>あんざん</rt></ruby>し、こたえをタイプするゲームです。
+          <div class="col-md">
+            <p>四則演算の英文をリスニングして暗算し、こたえをタイプするゲームです。
             </p>
           </div>
-          <div class="col-sm">
-            <div class="alert alert-info text-center">
-              <div class="h5">
-                <label><ruby>時間<rp>(</rp><rt>じかん</rt><rp>)</rp></ruby>:</label>
-                <span id="time" class="ms-1">120秒 / 120秒</span>
+          <div class="col-md text-center">
+            <div class="alert alert-info">
+              <div class="d-flex flex-wrap justify-content-center">
+                <div class="h5 text-nowrap notranslate">
+                  <span id="time">120</span>
+                  <span> / 120 sec</span>
+                </div>
               </div>
-              <div>
-                <button id="startButton" type="button" class="btn btn-primary btn-lg m-1">スタート</button>
-                <button id="showAnswer" type="button" class="btn btn-secondary btn-lg m-1">こたえ</button>
+              <div class="mt-2">
+                <button id="startButton" type="button" class="btn btn-primary btn-lg">スタート</button>
+                <button id="showAnswer" type="button" class="btn btn-secondary btn-lg">こたえ</button>
               </div>
             </div>
           </div>
         </div>
         <div class="text-center pt-3">
-          <div class="pt-3 h1">解答: <span id="reply"></span></div>
-          <div class="text-center pt-3">
+          <div class="pt-3 h1">解答: <span id="reply" class="notranslate"></span></div>
+          <div class="text-center pt-3 notranslate">
             <div class="pb-1">
               <button id="b1" class="btn btn-secondary calc">1</button>
               <button id="b2" class="btn btn-secondary calc">2</button>
@@ -156,26 +139,26 @@ sudo apt install festival speech-dispatcher-festival</code></pre>
           <img id="kohacu" src="kohacu.webp" width="128" height="128" alt="kohacu">
         </div>
         <div>
-          <h4><ruby>問題<rt>もんだい</rt></ruby><ruby>例<rt>れい</rt></ruby></h4>
-          <p><ruby>以下<rt>いか</rt></ruby>のような<ruby>英文<rt>えいぶん</rt></ruby>が<ruby>出題<rt>しゅつだい</rt></ruby>されるので、<ruby>聞<rt>き</rt></ruby>き<ruby>分<rt>わ</rt></ruby>けて<ruby>答<rt>こた</rt></ruby>えてください。
+          <h4>問題例</h4>
+          <p>以下のような英文が出題されるので、聞き分けて答えてください。
           </p>
           <div class="d-flex flex-wrap">
             <div class="px-3 overflow-auto">
               <h5>Lv.1</h5>
               <table class="table table-sm table-striped text-center w-auto text-nowrap">
                 <tbody>
-                  <tr><th>Seven</th><th>plus</th><th>four</th><th>is</th><th class="table-primary">eleven.</th></tr>
-                  <tr><th>Seven</th><th>plus</th><th>four</th><th>equals</th><th class="table-primary">eleven.</th></tr>
+                  <tr class="notranslate"><th>Seven</th><th>plus</th><th>four</th><th>is</th><th class="table-primary">eleven.</th></tr>
+                  <tr class="notranslate"><th>Seven</th><th>plus</th><th>four</th><th>equals</th><th class="table-primary">eleven.</th></tr>
                   <tr><td>7</td><td>たす</td><td>4</td><td>は</td><td class="table-primary">11</td></tr>
-                  <tr><th>Eight</th><th>minus</th><th>two</th><th>is</th><th class="table-primary">six.</th></tr>
-                  <tr><th>Eight</th><th>take away</th><th>two</th><th>is</th><th class="table-primary">six.</th></tr>
+                  <tr class="notranslate"><th>Eight</th><th>minus</th><th>two</th><th>is</th><th class="table-primary">six.</th></tr>
+                  <tr class="notranslate"><th>Eight</th><th>take away</th><th>two</th><th>is</th><th class="table-primary">six.</th></tr>
                   <tr><td>8</td><td>ひく</td><td>2</td><td>は</td><td class="table-primary">6</td></tr>
-                  <tr><th>Two</th><th>from</th><th>eight</th><th>is</th><th class="table-primary">six.</th></tr>
+                  <tr class="notranslate"><th>Two</th><th>from</th><th>eight</th><th>is</th><th class="table-primary">six.</th></tr>
                   <tr><td>2</td><td>から</td><td>8</td><td>までは</td><td class="table-primary">6</td></tr>
-                  <tr><th>Three</th><th>times</th><th>five</th><th>equals</th><th class="table-primary">fifteen.</th></tr>
-                  <tr><th>Three</th><th>multiplied by</th><th>five</th><th>equals</th><th class="table-primary">fifteen.</th></tr>
+                  <tr class="notranslate"><th>Three</th><th>times</th><th>five</th><th>equals</th><th class="table-primary">fifteen.</th></tr>
+                  <tr class="notranslate"><th>Three</th><th>multiplied by</th><th>five</th><th>equals</th><th class="table-primary">fifteen.</th></tr>
                   <tr><td>3</td><td>かける</td><td>5</td><td>は</td><td class="table-primary">15</td></tr>
-                  <tr><th>Tweleve</th><th>divided by</th><th>three</th><th>is</th><th class="table-primary">four.</th></tr>
+                  <tr class="notranslate"><th>Tweleve</th><th>divided by</th><th>three</th><th>is</th><th class="table-primary">four.</th></tr>
                   <tr><td>12</td><td>わる</td><td>3</td><td>は</td><td class="table-primary">4</td></tr>
                 </tbody>
               </table>
@@ -184,24 +167,40 @@ sudo apt install festival speech-dispatcher-festival</code></pre>
               <h5>Lv.2</h5>
               <table class="table table-sm table-striped text-center w-auto text-nowrap">
                 <tbody>
-                  <tr><th>When you</th><th>add</th><th>seven</th><th>and</th><th>four,</th><th>you get</th><th class="table-primary">eleven.</th><th></th></tr>
+                  <tr class="notranslate"><th>When you</th><th>add</th><th>seven</th><th>and</th><th>four,</th><th>you get</th><th class="table-primary">eleven.</th><th></th></tr>
                   <tr><td>〜のとき</td><td>たす</td><td>7</td><td>と</td><td>4</td><td>こたえは</td><td class="table-primary">11</td><td></td></tr>
-                  <tr><th>What do</th><th>you get</th><th>if you</th><th>add</th><th>seven</th><th>and</th><th>four?</th><th class="table-primary">eleven.</th></tr>
+                  <tr class="notranslate"><th>What do</th><th>you get</th><th>if you</th><th>add</th><th>seven</th><th>and</th><th>four?</th><th class="table-primary">eleven.</th></tr>
                   <tr><td>いくつ</td><td>になる</td><td>もし</td><td>たす</td><td>7</td><td>と</td><td>4</td><td class="table-primary">11</td></tr>
-                  <tr><th>When we</th><th>substract</th><th>two</th><th>from</th><th>eight,</th><th>we get</th><th class="table-primary">six.</th><td></td></tr>
-                  <tr><th>When you</th><th>take</th><th>two</th><th>away from</th><th>eight,</th><th>you get</th><th class="table-primary">six.</th><td></td></tr>
+                  <tr class="notranslate"><th>When we</th><th>substract</th><th>two</th><th>from</th><th>eight,</th><th>we get</th><th class="table-primary">six.</th><td></td></tr>
+                  <tr class="notranslate"><th>When you</th><th>take</th><th>two</th><th>away from</th><th>eight,</th><th>you get</th><th class="table-primary">six.</th><td></td></tr>
                   <tr><td>〜のとき</td><td>ひく</td><td>2を</td><td>から</td><td>8</td><td>こたえは</td><td class="table-primary">6</td><td></td></tr>
-                  <tr><th>When we</th><th>multiply</th><th>three</th><th>by</th><th>five,</th><th>we get</th><th class="table-primary">fifteen.</th><td></td></tr>
+                  <tr class="notranslate"><th>When we</th><th>multiply</th><th>three</th><th>by</th><th>five,</th><th>we get</th><th class="table-primary">fifteen.</th><td></td></tr>
                   <tr><td>〜のとき</td><td>かける</td><td>3</td><td>によって</td><td>5</td><td>こたえは</td><td class="table-primary">15</td><td></td></tr>
-                  <tr><th>When you</th><th>divide</th><th>twelve</th><th>by</th><th>three,</th><th>you get</th><th class="table-primary">four.</th><td></td></tr>
+                  <tr class="notranslate"><th>When you</th><th>divide</th><th>twelve</th><th>by</th><th>three,</th><th>you get</th><th class="table-primary">four.</th><td></td></tr>
                   <tr><td>〜のとき</td><td>わる</td><td>12</td><td>によって</td><td>3</td><td>こたえは</td><td class="table-primary">4</td><td></td></tr>
-                  <tr><th>What do</th><th>you get</th><th>if you</th><th>divide</th><th>twelve</th><th>by</th><th>three?</th><th class="table-primary">four.</th></tr>
+                  <tr class="notranslate"><th>What do</th><th>you get</th><th>if you</th><th>divide</th><th>twelve</th><th>by</th><th>three?</th><th class="table-primary">four.</th></tr>
                   <tr><td>いくつ</td><td>になる</td><td>もし</td><td>わる</td><td>12</td><td>によって</td><td>3</td><td class="table-primary">11</td></tr>
                 </tbody>
               </table>
             </div>
           </div>
         </div>
+      </div>
+      <div id="countPanel" class="text-center d-none">
+        <div id="countdown">
+          <div id="counter">3</div>
+          <img src="kohacu.webp" width="128" height="128" alt="">
+        </div>
+      </div>
+      <div id="scorePanel" class="text-center pb-3 d-none">
+        <h3 class="pt-3">スコア</h3>
+        <img src="kohacu.webp" width="128" height="128" alt="">
+        <p>クリアしたのは・・・</p>
+        <div class="h2 pb-3 notranslate">
+          <span id="score" class="h1">0</span> /
+          <span id="total" class="h1">0</span>
+        </div>
+        <button id="restartButton" type="button" class="btn btn-primary btn-lg">リスタート</button>
       </div>
     </main>
     <footer class="pt-4 alert text-center">
