@@ -1,10 +1,6 @@
 const playPanel = document.getElementById("playPanel");
 const countPanel = document.getElementById("countPanel");
 const scorePanel = document.getElementById("scorePanel");
-let endAudio, errorAudio, incorrectAudio, correctAudio;
-loadAudios();
-const AudioContext = window.AudioContext || window.webkitAudioContext;
-const audioContext = new AudioContext();
 const gameTime = 120;
 let firstRun = true;
 let problem = "Type Numbers";
@@ -13,13 +9,17 @@ let catCounter = 0;
 let solveCount = 0;
 let totalCount = 0;
 let englishVoices = [];
+let endAudio, errorAudio, incorrectAudio, correctAudio;
+loadAudios();
+const AudioContext = window.AudioContext || window.webkitAudioContext;
+const audioContext = new AudioContext();
+loadConfig();
 
 function loadConfig() {
   if (localStorage.getItem("darkMode") == 1) {
     document.documentElement.dataset.theme = "dark";
   }
 }
-loadConfig();
 
 function toggleDarkMode() {
   if (localStorage.getItem("darkMode") == 1) {
