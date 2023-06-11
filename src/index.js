@@ -330,7 +330,7 @@ function initCalc() {
         playAudio("correct");
         replyObj.textContent = "";
         scoreObj.textContent = parseInt(scoreObj.textContent) + 1;
-        nextProblem();
+        setTimeout(nextProblem, 300);
       } else if (answer.slice(0, reply.length) != reply) {
         playAudio("incorrect");
       }
