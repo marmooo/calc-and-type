@@ -141,16 +141,11 @@ function hideAnswer() {
   document.getElementById("reply").textContent = "";
 }
 
-function sleep(ms) {
-  return new Promise((resolve) => setTimeout(resolve, ms));
-}
-
 function showAnswer() {
   const msg = speak(problem + " " + answer);
   if (!firstRun) {
-    msg.onend = async () => {
-      await sleep(2000);
-      nextProblem();
+    msg.onend = () => {
+      setTimeout(nextProblem, 2000);
     };
   }
   document.getElementById("reply").textContent = problem + " [ " + answer +
