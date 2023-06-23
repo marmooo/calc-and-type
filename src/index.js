@@ -438,10 +438,6 @@ function generateData() {
   return [a, operation.indexOf(x), b, c];
 }
 
-function initTime() {
-  document.getElementById("time").textContent = gameTime;
-}
-
 initCalc();
 document.getElementById("toggleDarkMode").onclick = toggleDarkMode;
 document.getElementById("startButton").onclick = startGame;
