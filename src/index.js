@@ -322,12 +322,12 @@ function initCalc() {
       replyObj.textContent = reply.slice(0, 8);
       if (answer == reply) {
         solveCount += 1;
-        playAudio("correct");
+        playAudio("correct", 0.3);
         replyObj.textContent = "";
         scoreObj.textContent = parseInt(scoreObj.textContent) + 1;
         setTimeout(nextProblem, 300);
       } else if (answer.slice(0, reply.length) != reply) {
-        playAudio("incorrect");
+        playAudio("incorrect", 0.3);
       }
     };
   }
