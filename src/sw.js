@@ -1,4 +1,4 @@
-const CACHE_NAME = "2025-07-18 00:00";
+const CACHE_NAME = "2025-07-31 00:00";
 const urlsToCache = [
   "/calc-and-type/",
   "/calc-and-type/kohacu.webp",
