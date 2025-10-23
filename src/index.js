@@ -1,14 +1,19 @@
+import { createWorker } from "https://cdn.jsdelivr.net/npm/emoji-particle@0.0.4/+esm";
+
 const playPanel = document.getElementById("playPanel");
 const infoPanel = document.getElementById("infoPanel");
 const countPanel = document.getElementById("countPanel");
 const scorePanel = document.getElementById("scorePanel");
 const gameTime = 120;
+const emojiParticle = initEmojiParticle();
+const maxParticleCount = 10;
 let gameTimer;
 let firstRun = true;
 let problem = "Type Numbers";
 let answer = "123";
 let catCounter = 0;
-let solveCount = 0;
+let consecutiveWins = 0;
+let correctCount = 0;
 let totalCount = 0;
 let englishVoices = [];
 let audioContext;
@@ -152,6 +157,30 @@ function speak(text) {
   return msg;
 }
 
+function initEmojiParticle() {
+  const canvas = document.createElement("canvas");
+  Object.assign(canvas.style, {
+    position: "fixed",
+    pointerEvents: "none",
+    top: "0px",
+    left: "0px",
+  });
+  canvas.width = document.documentElement.clientWidth;
+  canvas.height = document.documentElement.clientHeight;
+  document.body.prepend(canvas);
+
+  const offscreen = canvas.transferControlToOffscreen();
+  const worker = createWorker();
+  worker.postMessage({ type: "init", canvas: offscreen }, [offscreen]);
+
+  globalThis.addEventListener("resize", () => {
+    const width = document.documentElement.clientWidth;
+    const height = document.documentElement.clientHeight;
+    worker.postMessage({ type: "resize", width, height });
+  });
+  return { canvas, offscreen, worker };
+}
+
 function getRandomInt(min, max) {
   min = Math.ceil(min);
   max = Math.floor(max);
@@ -163,6 +192,7 @@ function hideAnswer() {
 }
 
 function showAnswer() {
+  consecutiveWins = 0;
   const msg = speak(problem + " " + answer);
   if (!firstRun) {
     msg.onend = () => {
@@ -174,6 +204,16 @@ function showAnswer() {
 }
 
 function nextProblem() {
+  for (let i = 0; i < Math.min(consecutiveWins, maxParticleCount); i++) {
+    emojiParticle.worker.postMessage({
+      type: "spawn",
+      options: {
+        particleType: "popcorn",
+        originX: Math.random() * emojiParticle.canvas.width,
+        originY: Math.random() * emojiParticle.canvas.height,
+      },
+    });
+  }
   hideAnswer();
   totalCount += 1;
   const [a, x, b, c] = generateData();
@@ -271,7 +311,6 @@ function catsWalk(catCanvas) {
 function countdown() {
   speak("Ready"); // unlock
   firstRun = false;
-  solveCount = totalCount = 0;
   countPanel.classList.remove("d-none");
   infoPanel.classList.add("d-none");
   playPanel.classList.add("d-none");
@@ -286,6 +325,8 @@ function countdown() {
       counter.textContent = t;
     } else {
       clearInterval(timer);
+      correctCount = totalCount = 0;
+      consecutiveWins = 0;
       countPanel.classList.add("d-none");
       infoPanel.classList.remove("d-none");
       playPanel.classList.remove("d-none");
@@ -323,7 +364,7 @@ function initTime() {
 function scoring() {
   playPanel.classList.add("d-none");
   scorePanel.classList.remove("d-none");
-  document.getElementById("score").textContent = solveCount;
+  document.getElementById("score").textContent = correctCount;
   document.getElementById("total").textContent = totalCount;
 }
 
@@ -343,12 +384,14 @@ function initCalc() {
       reply += obj.getAttribute("id").slice(-1);
       replyObj.textContent = reply.slice(0, 8);
       if (answer == reply) {
-        solveCount += 1;
+        correctCount += 1;
+        consecutiveWins += 1;
         playAudio("correct", 0.3);
         replyObj.textContent = "";
         scoreObj.textContent = parseInt(scoreObj.textContent) + 1;
         setTimeout(nextProblem, 300);
       } else if (answer.slice(0, reply.length) != reply) {
+        consecutiveWins = 0;
         playAudio("incorrect", 0.3);
       }
     };
